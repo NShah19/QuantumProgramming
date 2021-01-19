@@ -1,0 +1,17 @@
+CS 239: Quantum Programming (UCLA) | Jens Palsberg | Winter 2021
+
+Problem Statement: The Deutsch-Jozsa problem
+    Input: a function f: {0,1}^n → {0,1}.
+    Assumption: f is either constant or balanced.
+    Output: 1 if f is constant; 0 if f is balanced.
+    Notation: {0,1} is the set of bits, and {0,1}^n is the set of bit strings of length n.
+    Terminology: 
+        Constant: f is constant if either f always outputs 0 or f always outputs 1.
+        Balanced: f is balanced if f outputs 0 on exactly half of the inputs.
+
+Implementation Language: Python3
+Dependencies: None
+
+
+
+
