@@ -1,0 +1,12 @@
+CS 239: Quantum Programming (UCLA) | Jens Palsberg | Winter 2021
+
+Problem Statement: Grover's problem:
+    Input: a function f : {0, 1}^n → {0, 1}
+    Output: 1 if there exists x ∈ {0, 1}^n such that f(x) = 1, and 0 otherwise
+    Notation: {0, 1}^n is the set of bit strings of length n  
+
+Implementation Language: Python3
+Dependencies: random
+
+Testing:
+    The function test_generator(num_tests) can be used to test the implementation for grover's problem. It takes as input the number of tests to be run. The function generates a random value between 3 and 20 t0 be used as n, the length of the bit string. Then a negative test is run, in which f always returns 0, a positive test is run in which f always returns 1, and a randomized tester is run for num_tests iterations. On each iteration, a random value between 0 and 2^n-1 is selected as the golden value for which f returns 1.  
