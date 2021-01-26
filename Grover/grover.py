@@ -8,47 +8,63 @@ def grover(f, n):
     Notation: {0, 1}^n is the set of bit strings of length n
     """
     # Iterate over all possible binary permuations of n bits
-    # return 1 if f(x) = 1 is found
-    # return 0 once all possible permutations have been exhausted
- 
+    # keep count of the number of times f(x) returns 1
+    # if count = 1, return 1, otherwise, return 0
+    count = 0
     max_int = '0b' + '1' * n
     for i in range(0, int(max_int, 2)+1):
-       if (f(str(format(i, 'b').zfill(n))) == 1):  
-           print("f(x) = 1 for ", str(format(i, 'b').zfill(n)))
-           return 1
+        if (f(i) == 1): 
+            count += 1 
+    if count == 1:
+        return 1
     return 0 
 
-def negative_test(x):
+def constant_zero(x):
     return 0
 
-def positive_test(x):
+def constant_one(x):
     return 1
 
-def create_func(n):
+def create_pass(n):
     # Generate a random number between 0 and 2^n - 1
     golden_val = random.randint(0, (2**n) - 1)
-    golden_val = format(golden_val, 'b').zfill(n)
     # Define f(x)
-    def func(x):
+    def one_val(x):
         if x == golden_val:
             return 1
         else:
-            return 0 
-    return func, golden_val
+            return 0
+
+    return one_val
+
+def create_fail(n):
+    # Generate a random number between 2 and 2^n - 1
+    num_left = random.randint(2, (2**n) - 1)
+    # Define f(x)
+    def mult_val(x):
+        if num_left > 0:
+            return 1
+        else:
+            return 0
+
+    return mult_val
 
 def test_generator(numTests):
     """
-    Generate random value for n and golden value to test implementation. 
+    Test implementation for grover's problem.
     """
     n = random.randint(3, 20)
-    print('Negative Test:')
-    print(grover(negative_test, n))
-    print('Positive Test:')
-    print(grover(positive_test, n))
+    print('Constant Zero:')
+    print(grover(constant_zero, n))
+    print('Constant One:')
+    print(grover(constant_one, n))
     for _ in range(numTests):
-        f, golden_val = create_func(n)
-        print('Golden Value: ', golden_val)
-        grover(f, n)
+        one_val = create_pass(n)
+        print('One value:')
+        print(grover(one_val, n))
+        mult_val = create_fail(n)
+        print('Multiple values:')
+        print(grover(mult_val, n))
 
 if __name__ == '__main__':
-   test_generator(10)
+    test_generator(10)

@@ -9,4 +9,8 @@ Implementation Language: Python3
 Dependencies: random
 
 Testing:
-    The function test_generator(num_tests) can be used to test the implementation for grover's problem. It takes as input the number of tests to be run. The function generates a random value between 3 and 20 to be used as n, the length of the bit string. Then a negative test is run, in which f always returns 0, a positive test is run in which f always returns 1, and a randomized tester is run for num_tests iterations. On each iteration, a random value between 0 and 2^n-1 is selected as the golden value for which f returns 1.  
+    The function test_generator(num_tests) can be used to test the implementation that solves grover's problem. It takes as input the number of tests to be run. The function generates a random value between 3 and 20 to be used as n, the length of the bit string. Then grover is called with the following functions:
+    - a constant function that always returns 0 
+    - a constant function that always returns 1
+    - a function that returns 1 only for a golden value, randomly chosen to be between 0 and 2^n-1 (called for num_tests iterations) 
+    - a function that returns 1 x times, with x being randomly generated to be between 2 and 2^n-1 (called for num_tests iterations)
